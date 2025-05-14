@@ -75,8 +75,10 @@ class Main {
     }
 
     public static void ReadCase() throws WrongCase {
-        if(!scan.hasNextInt())
+        if(!scan.hasNextInt()){
+            scan.nextLine();
             throw new WrongCase();
+        }
     }
 
     public static void exercise1() throws IOException, WrongStudentName, WrongAge, WrongDateOfBirth {
