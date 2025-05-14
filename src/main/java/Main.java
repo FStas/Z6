@@ -71,9 +71,7 @@ class Main {
 
     public static void exercise1() throws IOException, WrongStudentName, WrongAge {
         var name = ReadName();
-        System.out.println("Podaj wiek: ");
-        var age = scan.nextInt();
-        scan.nextLine();
+        var age = ReadAge();
         System.out.println("Podaj datę urodzenia DD-MM-YYYY");
         var date = scan.nextLine();
         (new Service()).addStudent(new Student(name, age, date));
