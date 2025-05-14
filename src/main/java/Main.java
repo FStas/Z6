@@ -39,8 +39,8 @@ class Main {
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        var i = ReadCase();
-        return i;
+        ReadCase();
+        return scan.nextInt();
     }
 
     public static String ReadName() throws WrongStudentName {
@@ -74,12 +74,9 @@ class Main {
         return date;
     }
 
-    public static int ReadCase() throws WrongCase {
-        scan.nextLine();
-        if(scan.hasNextInt())
-            return scan.nextInt();
-
-        throw new WrongCase();
+    public static void ReadCase() throws WrongCase {
+        if(!scan.hasNextInt())
+            throw new WrongCase();
     }
 
     public static void exercise1() throws IOException, WrongStudentName, WrongAge, WrongDateOfBirth {
