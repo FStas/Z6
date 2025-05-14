@@ -4,6 +4,7 @@ import java.util.Scanner;
 class WrongStudentName extends Exception { }
 class WrongAge extends Exception { }
 class WrongDateOfBirth extends Exception { }
+class WrongCase extends Exception { }
 
 class Main {
     public static Scanner scan = new Scanner(System.in);
@@ -26,17 +27,20 @@ class Main {
                 System.out.println("Błędny wiek studenta!");
             } catch(WrongDateOfBirth e) {
                 System.out.println("Błędna data urodzenia studenta!");
+            } catch(WrongCase e) {
+                System.out.println("Błędny wybór!");
             }
         }
     }
 
-    public static int menu() {
+    public static int menu() throws WrongCase {
         System.out.println("Wciśnij:");
         System.out.println("1 - aby dodać studenta");
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        return scan.nextInt();
+        var i = ReadCase();
+        return i;
     }
 
     public static String ReadName() throws WrongStudentName {
@@ -55,6 +59,7 @@ class Main {
         int age = scan.nextInt();
         if(age < 1 || age > 99)
             throw new WrongAge();
+        
         return age;
     }
 
@@ -65,7 +70,16 @@ class Main {
         String[] part = date.split("-");
         if(part.length != 3 || part[0].length() != 2 || part[1].length() != 2 || part[2].length() != 4)
             throw new WrongDateOfBirth();
+        
         return date;
+    }
+
+    public static int ReadCase() throws WrongCase {
+        scan.nextLine();
+        if(scan.hasNextInt())
+            return scan.nextInt();
+
+        throw new WrongCase();
     }
 
     public static void exercise1() throws IOException, WrongStudentName, WrongAge, WrongDateOfBirth {
